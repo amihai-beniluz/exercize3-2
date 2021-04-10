@@ -74,13 +74,6 @@ Date Date::operator++(int u) { // adds 1 (post)
 	return temp;
 }
 
-/*Date Date::operator++(int u) { // adds 1 (post)
-	Date temp = *this;
-	this->setDate((day + 1) % 30, (month + (day + 1) / 30) % 12, year + (month + (day + 1) / 30) / 12);
-	if ((year + (month + (day + 1) / 30) / 12) >= 2100)this->setDate(1, 1, 1920);
-	return temp;
-}*/
-
 Date Date::operator+=(int d) { // adds d (pre)
 	this->setDate((day+d)%30 , (month+(day+d)/30)%12 , year+(month+(day+d)/30)/12);
 	if ((year + (month + (day + d) / 30) / 12) >= 2100)this->setDate(1,1,1920);
@@ -105,8 +98,8 @@ bool Date::operator<(Date d)
 
 bool Date::operator==(Date d)
 {
-	if (year==d.year && month==d.month && day==d.day)return 1;
-	return 0;
+	if (*this<d || *this>d)return 0;
+	return 1;
 }
 
 void Date::print()
